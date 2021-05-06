@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 d-flex align-items-stretch" *ngFor="let h of hotels">
+            <div class="card" style="width: 18rem;">
+                <img src="https://cdn1.goibibo.com/voy_ing/t_g/83b1b64efddc11e482795ee5da2daa2a.jfif" class="card-img-top rounded mx-auto d-block ">
+                <div class="card-body">
+                    <h3 class="card-title">{{h.name}}</h3>
+                    <p class="card-text"><b>Address: </b>{{h.address}}</p>
+                    <p class="card-text"><b>Description: </b>{{h.description}}</p>
+                    <p class="card-text"><b>Price: </b>{{h.rent | currency:'INR'}}</p>
+                    <button class="btn btn-primary" (click)="onBook(h.id)">Book Now</button>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+</div>

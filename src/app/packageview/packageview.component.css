@@ -1,0 +1,13 @@
+.card {
+    margin: 10px;
+}
+
+.container {
+    background: -webkit-linear-gradient(to top, #7a8076, #8DC26F);
+    background: -moz-linear-gradient(to top, #7a8076, #8DC26F);
+    background: -o-linear-gradient(to top, #7a8076, #8DC26F);
+    background: linear-gradient(to top, #7a8076, #8DC26F);
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Roboto', sans-serif;
+}
