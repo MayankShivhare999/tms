@@ -3,10 +3,10 @@
     
     <div class=""> <br><br><br><br><br><br>
        <div>
+        <h1 class="text-center mb-5 ">{{date | date}}</h1>
         <h1 class="text-center mb-5 ">{{from}} <span class="material-icons">
             arrow_right_alt
             </span> {{to}}</h1>
-            <p>{{mydata}}</p>
        </div>
      <div class="table-responsive my-10">
 
@@ -23,22 +23,31 @@
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let i of BUS">
-            <td scope="col">{{i.name}}</td>
-            <td class="text-center" scope="col">{{i.dep}}</td>
-            <td class="text-center" scope="col">{{i.dur}}</td>
-            <td class="text-center" scope="col">{{i.arr}}</td>
-            <td class="text-center" scope="col">{{i.fair}}</td>
-            <td class="text-center" scope="col">{{i.rating}}</td>
-            <td class="text-center" scope="col">{{i.seats}}</td>
-            <td class="text-center" scope="col"><button class="btn btn-primary">Book</button></td>
-            
-          </tr>
+        <tbody *ngFor="let data of mydata">
+
+            <tr *ngFor="let i of data.buses">
+              <td scope="col">BUS_NAME</td>
+              <td class="text-center" scope="col">{{i.dep}}</td>
+              <td class="text-center" scope="col">{{i.arr - i.dep}}</td>
+              <td class="text-center" scope="col">{{i.arr}}</td>
+              <td class="text-center" scope="col">{{i.amount}}</td>
+              <td class="text-center" scope="col">4.5</td>
+              <td class="text-center" scope="col">{{i.currentEmptySeat}}</td>
+              <td class="text-center" scope="col"><a class="btn btn-primary" routerLink="/busbookingview" (click)="onBooking(i.id)">Book</a></td>
+              
+            </tr>
+
+
+          
          
         </tbody>
       </table>
 
+      <!-- <div *ngFor="let i of mydata">
+        <div *ngFor="let b of i.buses">
+          <p>{{b.busNumber}}</p>
+        </div>
+      </div> -->
 
        <!-- <div class="table-responsive my-5">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table"> -->

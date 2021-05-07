@@ -31,7 +31,13 @@ import { PackageService } from './services/package.service';
 import { FooterComponent } from './footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CustomerprofileComponent } from './customerprofile/customerprofile.component';
-import { BusbookingviewComponent } from './busbookingview/busbookingview.component'
+import { BusbookingviewComponent } from './busbookingview/busbookingview.component';
+import { MybusbookingComponent } from './mybusbooking/mybusbooking.component';
+import { MyhotelbookingComponent } from './myhotelbooking/myhotelbooking.component';
+import { MypackagebookingComponent } from './mypackagebooking/mypackagebooking.component';
+import { HotelbookingviewComponent } from './hotelbookingview/hotelbookingview.component'
+import { BusbookingService } from './services/busbooking.service';
+import { RouteService } from './services/route.service';
 
 
 @NgModule({
@@ -49,7 +55,11 @@ import { BusbookingviewComponent } from './busbookingview/busbookingview.compone
     ContactComponent,
     FooterComponent,
     CustomerprofileComponent,
-    BusbookingviewComponent
+    BusbookingviewComponent,
+    MybusbookingComponent,
+    MyhotelbookingComponent,
+    MypackagebookingComponent,
+    HotelbookingviewComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +81,9 @@ import { BusbookingviewComponent } from './busbookingview/busbookingview.compone
   ],
   providers: [
     HotelService,
-    PackageService
+    PackageService,
+    BusbookingService,
+    RouteService
   ],
   bootstrap: [AppComponent]
 })

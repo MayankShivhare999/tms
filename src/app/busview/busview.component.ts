@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { RouteData } from '../routedetail/routedetail.component';
+import { BusbookingService } from '../services/busbooking.service';
+import { RouteService } from '../services/route.service';
 
 @Component({
   selector: 'app-busview',
@@ -7,34 +10,102 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BusviewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private busBookingService: BusbookingService, private routeService: RouteService) { }
 
-  from:string = 'Pune';
-  to:String = 'Mumbai';
-  displayedColumns: string[] = ['name', 'dep', 'dur','arr','fair','rating', 'seats'];
+  // selectedData : RouteData = undefined;
+
+  from: string;
+  to: String;
+  date: Date;
+  displayedColumns: string[] = ['name', 'dep', 'dur', 'arr', 'fair', 'rating', 'seats'];
   //dataSource = ELEMENT_DATA;
   dataSource = BUS_DATA;
 
-  mydata=""
+  mydata: any = ""
 
-  BUS = [
-    {name: 'Kamayni', dep: '12:00', dur: '2H 00m', arr: '14:00',fair: 350, rating:4.2, seats: 32},
-    {name: 'Rajasthan Parivahan', dep: '12:00', dur: '2H 00m',arr: '14:00',fair: 350, rating:4.2, seats: 32},
-    {name: 'Chartered', dep: '12:00', dur: '2H 00m',arr: '14:00',fair: 350, rating:4.2, seats: 32},
-    {name: 'Sky Bus', dep: '12:00', dur: '2H 00m',arr: '14:00',fair: 350, rating:4.2, seats: 32},
-    {name: 'Verma Travels', dep: '12:00', dur: '2H 00m',arr: '14:00',fair: 350, rating:4.2, seats: 32},
-  
-  ];
-  
+  route: MyRoute;
+
+  Buses: any
+
+  dep
+  duration
+  arr
+  fare
+  rating
+  available
+
 
   ngOnInit(): void {
+    let selectedData = this.busBookingService.selected;
+
+    this.from = selectedData.from;
+    this.to = selectedData.to;
+    this.date = selectedData.date;
+    this.getRoute(this.from, this.to);
   }
 
-  
+  getRoute(from, to) {
+    this.routeService.getRoute(from, to).subscribe(
+      data => {
+        this.mydata = data;
+        console.log(this.mydata);
+        // this.BUS =
+      }
+    ), error => {
+      console.log(error);
 
+    }
+  }
+
+  onBooking(id) {
+    console.log(id);
+    this.busBookingService.busSelected = id;
+  }
+
+  getAllBuses() {
+
+  }
+
+  // getHotles() {​​​​​​​​
+  //   this.service.getAllHotels().subscribe(
+  //   data=> {​​​​​​​​ this.hotels = data }​​​​​​​​,
+  //   error=> {​​​​​​​​
+  //   this.hotels = [];
+  //   console.log('Error Occured')
+  //   console.log(error);
+  //         }​​​​​​​​
+  //       );
+  //     }​​​​​​​​
 
 }
 
+
+export interface Bus {
+  id
+  name
+  dep
+  dur
+  arr
+  fair
+  rating
+  seats
+}
+
+export interface MyRoute {
+  buses: Bus[]
+  from
+  to
+  id
+}
+
+export class BusData {
+  busname
+  dep
+  dur
+  arr
+  fare
+  rating
+}
 
 // export interface PeriodicElement {
 //   name: string;
@@ -53,11 +124,11 @@ export class BusviewComponent implements OnInit {
 // }
 
 const BUS_DATA = [
-  {name: 'Kamayni', dep: '12:00', dur: '2H 00m', arr: '14:00',fair: 350, rating:4.2, seats: 32},
-  {name: 'Rajasthan Parivahan', dep: '12:00', dur: '2H 00m',arr: '14:00',fair: 350, rating:4.2, seats: 32},
-  {name: 'Chartered', dep: '12:00', dur: '2H 00m',arr: '14:00',fair: 350, rating:4.2, seats: 32},
-  {name: 'Sky Bus', dep: '12:00', dur: '2H 00m',arr: '14:00',fair: 350, rating:4.2, seats: 32},
-  {name: 'Verma Travels', dep: '12:00', dur: '2H 00m',arr: '14:00',fair: 350, rating:4.2, seats: 32},
+  { name: 'Kamayni', dep: '12:00', dur: '2H 00m', arr: '14:00', fair: 350, rating: 4.2, seats: 32 },
+  { name: 'Rajasthan Parivahan', dep: '12:00', dur: '2H 00m', arr: '14:00', fair: 350, rating: 4.2, seats: 32 },
+  { name: 'Chartered', dep: '12:00', dur: '2H 00m', arr: '14:00', fair: 350, rating: 4.2, seats: 32 },
+  { name: 'Sky Bus', dep: '12:00', dur: '2H 00m', arr: '14:00', fair: 350, rating: 4.2, seats: 32 },
+  { name: 'Verma Travels', dep: '12:00', dur: '2H 00m', arr: '14:00', fair: 350, rating: 4.2, seats: 32 },
 
 ];
 

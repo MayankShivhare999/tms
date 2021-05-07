@@ -8,7 +8,7 @@
                     <p class="card-text"><b>Address: </b>{{h.address}}</p>
                     <p class="card-text"><b>Description: </b>{{h.description}}</p>
                     <p class="card-text"><b>Price: </b>{{h.rent | currency:'INR'}}</p>
-                    <button class="btn btn-primary" (click)="onBook(h.id)">Book Now</button>
+                    <a class="btn btn-primary" (click)="onBook(h.id)" routerLink="/hotelbookingview">Book Now</a>
                 </div>
             </div>
         </div>

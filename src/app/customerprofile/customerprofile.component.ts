@@ -11,6 +11,9 @@ export class CustomerprofileComponent implements OnInit {
 
   today = new Date();
 
+  bookingsrc = "";
+  
+
   ngOnInit(): void {
     setInterval(() => {
       this.today = new Date();

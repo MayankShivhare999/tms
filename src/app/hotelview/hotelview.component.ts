@@ -1,6 +1,7 @@
 
 
 import {​​​​​​​​ Component, OnInit }​​​​​​​​ from'@angular/core';
+import { Hotel } from '../model/Hotel';
 // import {​​​​​​​​ Hotel }​​​​​​​​ from'../model/hotel';
 import {​​​​​​​​ HotelService }​​​​​​​​ from'../services/hotel.service';
  
@@ -18,9 +19,29 @@ ngOnInit(): void {​​​​​​​​
 this.getHotles();
   }​​​​​​​​
 
+  hotelData:any;
+
+
+
+  // getHotelById(id) {
+  //   this.service.getHotelById(id).subscribe(
+  //     data => {
+  //       this.hotelData = data;
+  //       // console.log(data);
+  //       return data;
+        
+  //       return this.hotelData;
+  //     },
+  //     error => {
+  //       console.log(error);
+        
+  //     }
+  //   )
+  // }
+
   onBook(id) {
     console.log(id);
-    // window.location.href="/";
+    this.service.selectedHotel = id;
   }
  
 getHotles() {​​​​​​​​
@@ -32,6 +53,7 @@ console.log('Error Occured')
 console.log(error);
       }​​​​​​​​
     );
+  
   }​​​​​​​​
  
 }​​​​​​​​
