@@ -15,6 +15,8 @@ export class BusviewComponent implements OnInit {
   //dataSource = ELEMENT_DATA;
   dataSource = BUS_DATA;
 
+  mydata=""
+
   BUS = [
     {name: 'Kamayni', dep: '12:00', dur: '2H 00m', arr: '14:00',fair: 350, rating:4.2, seats: 32},
     {name: 'Rajasthan Parivahan', dep: '12:00', dur: '2H 00m',arr: '14:00',fair: 350, rating:4.2, seats: 32},

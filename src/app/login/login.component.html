@@ -8,18 +8,33 @@
 
       <div class="signin-form">
         <h2 class="form-title">Login</h2>
-        <form method="POST" class="register-form" id="login-form">
-          <div class="form-group">
+        <form class="register-form" id="login-form">
+          <!-- <div class="form-group">
             <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
             <input type="text" name="your_name" id="your_name" placeholder="User Name" />
+          </div> -->
+
+          <div class="example-container">
+            <mat-form-field appearance="fill">
+              <mat-label>Enter your Username</mat-label>
+              <input matInput  [formControl]="username" required>
+              <mat-error *ngIf="username.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
           </div>
-          <div class="form-group">
+          <br>
+          <!-- <div class="form-group">
             <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
             <input type="password" name="your_pass" id="your_pass" placeholder="Password" />
-          </div>
-          <div class="form-group">
-            <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-          </div>
+          </div> -->
+          
+          <mat-form-field appearance="fill">
+              <mat-label>Enter your password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+          
           <div class="form-group form-button">
             <input type="submit" name="signin" id="signin" class="form-submit" value="Log in" />
           </div>

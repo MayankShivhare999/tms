@@ -28,6 +28,10 @@ import { MatTableModule } from '@angular/material/table';
 import { ContactComponent } from './contact/contact.component'
 import { HotelService } from './services/hotel.service';
 import { PackageService } from './services/package.service';
+import { FooterComponent } from './footer/footer.component';
+import { MatIconModule } from '@angular/material/icon';
+import { CustomerprofileComponent } from './customerprofile/customerprofile.component';
+import { BusbookingviewComponent } from './busbookingview/busbookingview.component'
 
 
 @NgModule({
@@ -42,7 +46,10 @@ import { PackageService } from './services/package.service';
     SignupComponent,
     BusdetailComponent,
     RoutedetailComponent,
-    ContactComponent
+    ContactComponent,
+    FooterComponent,
+    CustomerprofileComponent,
+    BusbookingviewComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +66,8 @@ import { PackageService } from './services/package.service';
     ReactiveFormsModule,
     HttpClientModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule
   ],
   providers: [
     HotelService,

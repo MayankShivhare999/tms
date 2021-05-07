@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BusbookingviewComponent } from './busbookingview/busbookingview.component';
 import { BusdetailComponent } from './busdetail/busdetail.component';
 import { BusviewComponent } from './busview/busview.component';
 import { ContactComponent } from './contact/contact.component';
+import { CustomerprofileComponent } from './customerprofile/customerprofile.component';
 import { HomeComponent } from './home/home.component';
 import { HotelviewComponent } from './hotelview/hotelview.component';
 import { LoginComponent } from './login/login.component';
@@ -19,7 +21,10 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'routedetail', component: RoutedetailComponent},
-  {path: 'busdetail', component: BusdetailComponent}
+  {path: 'busdetail', component: BusdetailComponent},
+  {path: 'myprofile', component: CustomerprofileComponent},
+  {path: 'busbookingview', component: BusbookingviewComponent},
+  
 ];
 
 @NgModule({

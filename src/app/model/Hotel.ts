@@ -4,4 +4,5 @@ export class Hotel {
     address: string;
     description: string;
     rent: number;
+    profile:string
 }

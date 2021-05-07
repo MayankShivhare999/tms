@@ -17,12 +17,6 @@ display-flex, .display-flex, .display-flex-center, .signup-content, .signin-cont
   display: flex;
   display: -webkit-flex; }
 
-/* @extend list-type-ulli; */
-list-type-ulli, .socials {
-  list-style-type: none;
-  margin: 0;
-  padding: 0; }
-
 a:focus, a:active {
   text-decoration: none;
   outline: none;
@@ -32,13 +26,13 @@ a:focus, a:active {
   -o-transition: all 300ms ease 0s;
   -ms-transition: all 300ms ease 0s; }
 
-input, select, textarea {
+/* input, select, textarea {
   outline: none;
   appearance: unset !important;
   -moz-appearance: unset !important;
   -webkit-appearance: unset !important;
   -o-appearance: unset !important;
-  -ms-appearance: unset !important; }
+  -ms-appearance: unset !important; } */
 
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   appearance: none !important;
@@ -217,12 +211,6 @@ figure {
 .register-form {
   width: 100%; }
 
-.form-group {
-  position: relative;
-  margin-bottom: 25px;
-  overflow: hidden; }
-  .form-group:last-child {
-    margin-bottom: 0px; }
 
 input {
   width: 100%;

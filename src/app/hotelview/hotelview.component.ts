@@ -20,7 +20,7 @@ this.getHotles();
 
   onBook(id) {
     console.log(id);
-    window.location.href="/";
+    // window.location.href="/";
   }
  
 getHotles() {​​​​​​​​
