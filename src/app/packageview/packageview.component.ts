@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { data } from 'jquery';
 import { Package } from '../model/Package';
 import { PackageService } from '../services/package.service';
 
@@ -16,25 +17,21 @@ export class PackageviewComponent implements OnInit {
   ngOnInit(): void {
     this.getPackages();
   }
-
-  // getPackages() {
-  //   this.packageService.getPackage().subscribe({
-  //     data=> {this.packages=data },
-  //     error=> {
-  //       console.log(error);
-        
-  //     }
-  //   }
-  //   );
-  // }
-
-  getPackages() {​​​​​​​​
+​​​​​​​ 
+  getPackages() {
     this.packageService.getPackage().subscribe(
-    data=> {​​​​​​​​ this.packages = data }​​​​​​​​,
-    error=> {​​​​​​​​
-    console.log(error);
-          }​​​​​​​​
-        );
-      }​​​​​​​​
+      data => {
+        this.packages = data;        
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  onSelectPackage(id:number) {
+    this.packageService.selectedPackageId = id;
+    console.log(id);
+  }
 
 }

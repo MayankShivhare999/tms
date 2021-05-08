@@ -1,5 +1,7 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { RouteData } from '../model/RouteData';
 import { BusbookingService } from '../services/busbooking.service';
 
 @Component({
@@ -9,49 +11,39 @@ import { BusbookingService } from '../services/busbooking.service';
 })
 export class RoutedetailComponent implements OnInit {
 
-  constructor(private busBookingService:BusbookingService) { 
-    this.loadCities();
-  }
+  from: string = "";
+  to: string = "";
+  date: Date = new Date();
 
-  from:string="";
-  to:string="";
-  date:Date=new Date();
+  today: any;
 
   // selectedData = new BusData(this.from, this.to, this.date);
   myControl = new FormControl();
   cities;
   //  :string[] = ['Agra','Bombay', 'Delhi', 'Pune', 'Mumbai'];
 
+  constructor(private busBookingService: BusbookingService, private datepipe: DatePipe) {
+    let todayDate = new Date();
+    this.today = this.datepipe.transform(todayDate, 'yyyy-MM-dd');
+    this.loadCities();
+  }
+
   ngOnInit(): void {
   }
 
   loadCities() {
-    var allCities = ['Agra','Bombay', 'Delhi', 'Pune', 'Mumbai'];
-    this.cities =  allCities.map(function (city) {
+    var allCities = ['Agra', 'Bombay', 'Delhi', 'Pune', 'Mumbai'];
+    this.cities = allCities.map(function (city) {
       return {
-        value: city.toUpperCase(),
-        display:city
+        value: city,
+        display: city
       }
     })
- }
-
- searchBus() {
-   console.log("Bus Clicked");
-   console.log(this.from+" "+this.to+" "+this.date);
-   let selectedData = new RouteData(this.from, this.to, this.date);
-   this.busBookingService.selected = selectedData;   
- }
-
-}
-
-export class RouteData {
-  from:string;
-  to:string;
-  date:Date;
-
-  constructor(from, to, date) {
-    this.from = from;
-    this.to = to;
-    this.date = date;
   }
+
+  searchBus() {
+    let selectedData = new RouteData(this.from, this.to, this.date);
+    this.busBookingService.selected = selectedData;
+  }
+
 }

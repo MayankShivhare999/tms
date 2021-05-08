@@ -6,3 +6,4 @@ export class Hotel {
     rent: number;
     profile:string
 }
+

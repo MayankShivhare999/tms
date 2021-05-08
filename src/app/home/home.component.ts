@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CustomerService } from '../services/customer.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  noOfCustomers:number;
+  noOfHotels:number;
+  noOfPackages:number;
+  noOfBuses:number;
+
+  count:number;
+
+  constructor(private customerService:CustomerService) { 
+    // this.count = this.getNoOfCustomers;
+    this.getNoOfCustomers();
+  }
 
   ngOnInit(): void {
   }
+
+  getNoOfCustomers() {
+    console.log("Hey");
+    
+    console.log(this.customerService.getAllCustomers().subscribe.length);
+    ;
+  }
+
 
 }

@@ -1,6 +1,4 @@
-
-<div class="container">
-    
+<div class="container">    
     <div class=""> <br><br><br><br><br><br>
        <div>
         <h1 class="text-center mb-5 ">{{date | date}}</h1>
@@ -9,7 +7,6 @@
             </span> {{to}}</h1>
        </div>
      <div class="table-responsive my-10">
-
        <table class="mat-elevation-z8 table">
         <thead>
           <tr>
@@ -33,81 +30,11 @@
               <td class="text-center" scope="col">{{i.amount}}</td>
               <td class="text-center" scope="col">4.5</td>
               <td class="text-center" scope="col">{{i.currentEmptySeat}}</td>
-              <td class="text-center" scope="col"><a class="btn btn-primary" routerLink="/busbookingview" (click)="onBooking(i.id)">Book</a></td>
-              
+              <td class="text-center" scope="col"><a class="btn btn-primary" routerLink="/busbookingview"  (click)="onBooking(i.id)">Book</a></td>
+              <!-- routerLink="/busbookingview" -->
             </tr>
-
-
-          
-         
         </tbody>
-      </table>
-
-      <!-- <div *ngFor="let i of mydata">
-        <div *ngFor="let b of i.buses">
-          <p>{{b.busNumber}}</p>
-        </div>
-      </div> -->
-
-       <!-- <div class="table-responsive my-5">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table"> -->
-
-            <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-
-          <!-- <tr *ngFor="let i of BUS">
-            <td>{{i.name}</td>
-          </tr> -->
-          
-<!--             
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef> Name. </th>
-              <td mat-cell *matCellDef="let bus"> {{bus.name}} </td>
-            </ng-container>
-          
-            <ng-container matColumnDef="dep">
-              <th mat-header-cell *matHeaderCellDef> Dept. Time </th>
-              <td mat-cell *matCellDef="let element"> {{element.dep}} </td>
-            </ng-container>
-
-             <ng-container matColumnDef="dur">
-              <th mat-header-cell *matHeaderCellDef> Duration </th>
-              <td mat-cell *matCellDef="let element"> {{element.dur}} </td>
-            </ng-container>
-
-             <ng-container matColumnDef="arr">
-              <th mat-header-cell *matHeaderCellDef> Arr. Time </th>
-              <td mat-cell *matCellDef="let element"> {{element.arr}} </td>
-            </ng-container>
-
-             <ng-container matColumnDef="fair">
-              <th mat-header-cell *matHeaderCellDef> Fair </th>
-              <td mat-cell *matCellDef="let element"> {{element.fair}} </td>
-            </ng-container>
-
-             <ng-container matColumnDef="rating">
-              <th mat-header-cell *matHeaderCellDef> Rating </th>
-              <td mat-cell *matCellDef="let element"> {{element.rating}} </td>
-            </ng-container>
-
-             <ng-container matColumnDef="seats">
-              <th mat-header-cell *matHeaderCellDef> Available </th>
-              <td mat-cell *matCellDef="let element"> {{element.seats}} </td>
-            </ng-container>
-
-             
-            <ng-container >
-              <th mat-header-cell *matHeaderCellDef> Available </th>
-              <td mat-cell *matCellDef="let element"> {{element.seats}} </td>
-            </ng-container>
-
-            
-          
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> -->
-          <!-- </table> -->
-          
-          
+      </table>          
        </div> 
 
     </div>   

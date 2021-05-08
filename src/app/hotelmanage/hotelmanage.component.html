@@ -1,0 +1,124 @@
+<div class="container">
+    <div class="text-right my-3">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addHotelModel">Add</button>
+    </div>
+
+    <div class="row" [hidden]="!deleteMessage">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{message}}</strong>
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+
+    <table datatable class="row-border hover">
+        <thead>
+            <tr>
+                <th>Hotel Name</th>
+                <th>Hotel Address</th>
+                <th>Hotel Description</th>
+                <th>Hotel Rent</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let h of hotels">
+                <td>{{h.name}}</td>
+                <td>{{h.address}}</td>
+                <td>{{h.description}}</td>
+                <td>{{h.rent}}</td>
+                <td>
+                    <button class="btn btn-info mr-3" (click)='getHotel(h.id)' data-toggle="modal" data-target="#updateHotelModel">Edit</button>
+                    <button class="btn btn-danger" (click)='deleteHotel(h.id)'>Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal for adding hotel-->
+<div class="modal fade" id="addHotelModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form [formGroup]="saveHotel" #hotelSave (ngSubmit)="addHotel()">
+                <div>
+                    <h5 class="text-success" *ngIf="isSaved">Hotel added sucessfully!!</h5><br/>
+                </div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Hotel</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Hotel Name</label>
+                        <input type="text" class="form-control" formControlName="hname" [(ngModel)]='name' data-toggle="tooltip" data-placement="right" title="Enter Hotel Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Hotel Address</label>
+                        <input type="text" class="form-control" formControlName="haddress" [(ngModel)]='address' data-toggle="tooltip" data-placement="right" title="Enter Hotel Address">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Hotel Description</label>
+                        <input type="text" class="form-control" formControlName="hdescription" [(ngModel)]='description' data-toggle="tooltip" data-placement="right" title="Enter Hotel Description">
+                    </div>
+                    <div class="form-group">
+                        <label for="rent">Hotel Rent</label>
+                        <input type="text" class="form-control" formControlName="hrent" [(ngModel)]='rent' data-toggle="tooltip" data-placement="right" title="Enter Hotel Rent">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Model for editing the hotel-->
+<div class="modal fade" id="updateHotelModel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="hotelupdateform" #updatehotel (ngSubmit)="updateHotelDetails()">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" style="text-align: center">Update Hotel</h4>
+                </div>
+                <div class="modal-body">
+                    <div [hidden]="isupdated">
+                        <input type="hidden" class="form-control" formControlName="uid" [(ngModel)]="hotel.id">
+                        <div class="form-group">
+                            <label for="name">Hotel Name</label>
+                            <input type="text" class="form-control" formControlName="uname" [(ngModel)]="hotel.name">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Hotel Address</label>
+                            <input type="text" class="form-control" formControlName="uaddress" [(ngModel)]="hotel.address">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Hotel Description</label>
+                            <input type="text" class="form-control" formControlName="udescription" [(ngModel)]="hotel.description">
+                        </div>
+                        <div class="form-group">
+                            <label for="rent">Hotel Rent</label>
+                            <input type="text" class="form-control" formControlName="urent" [(ngModel)]="hotel.rent">
+                        </div>
+                    </div>
+                    <div [hidden]="!isupdated">
+                        <h4>Hotel Detail Updated!</h4>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success" [hidden]="isupdated">Update</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="changeisUpdate()">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

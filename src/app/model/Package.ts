@@ -7,6 +7,6 @@ export class Package {
     destination:string;
     duration:string;
 	description:string;
-	price:string;
+	price:number;
     hotels:Hotel[];
 }

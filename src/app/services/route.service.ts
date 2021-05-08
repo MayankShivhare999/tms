@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Route } from '../model/Route';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,19 @@ export class RouteService {
 
   constructor(private http:HttpClient) { }
 
-  getRoute(from:string, to:string) {
+  addRoute(route: Route):Observable<any>{
+    return this.http.post(`${this.baseURL}/addroute`,route);
+  }
+  
+  getAllRoute(): Observable<any>{
+    return this.http.get(`${this.baseURL}/getroutes`);
+  }
+  
+  deleteRoute(id: number): Observable<any>{
+    return this.http.delete(`${this.baseURL}/deleteroutebyid/${id}`,{responseType: 'text'})
+  }
+
+  getRoute(from:string, to:string):Observable<any> {
     return this.http.get(`${this.baseURL}/getroutebytostation/${from}/${to}`);
   }
 }

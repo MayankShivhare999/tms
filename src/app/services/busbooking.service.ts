@@ -9,8 +9,9 @@ export class BusbookingService {
 
   selected:any;
 
-  busSelected:any;
+  // busSelected:any;
 
+  busSelected:any = 143;
   set setSelected(selected) {
     this.selected = selected;
   }

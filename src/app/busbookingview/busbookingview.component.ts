@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Bus } from '../busview/busview.component';
+import { Bus } from '../model/Bus';
+import { BusBooking } from '../model/BusBooking';
+import { Customer } from '../model/Customer';
+import { RouteData } from '../model/RouteData';
+import { Station } from '../model/Station';
 import { BusService } from '../services/bus.service';
 import { BusbookingService } from '../services/busbooking.service';
+import { CustomerService } from '../services/customer.service';
+import { StationService } from '../services/station.service';
 
 @Component({
   selector: 'app-busbookingview',
@@ -10,45 +16,101 @@ import { BusbookingService } from '../services/busbooking.service';
 })
 export class BusbookingviewComponent implements OnInit {
 
-  constructor(private busService:BusService, private busBookingService:BusbookingService) { }
+  from_Station: Station;
+  to_Station: Station;
 
-  Bus:any;
+  Bus: Bus;
+  customer: Customer;
+  // to_Station:Station;
+  // from_Station:Station;
 
+  from: any;
+  to: any;
+  date: any;
 
-
-  noOfCustomer:any = 1;
+  noOfCustomer: any = 1;
   ticketfare = 0;
   rent = 250;
 
-  ngOnInit(): void {
+  constructor(private busService: BusService, private busBookingService: BusbookingService, private customerService: CustomerService, private stationService: StationService) {
+    let routeData: RouteData = this.busBookingService.selected;
+    this.from = routeData.from;
+    this.to = routeData.to;
+    this.date = routeData.date;
     this.ticketfare = this.rent;
     this.getBusById(this.busBookingService.busSelected);
-    console.log(this.Bus);
-    // console.log(this.Bus.seats);
-    
+    this.getFromStationByName(this.from);
+    this.getToStationByName(this.to);
+    this.getCustomerById(62);
+  }
+
+
+
+  ngOnInit(): void {
   }
 
 
   onDecrement() {
-    if(this.noOfCustomer!=1){
+    if (this.noOfCustomer != 1) {
       this.noOfCustomer--;
       this.rent = this.rent - this.ticketfare;
     }
-    
+
   }
 
   onIncrement() {
-    console.log("Inc");
     this.noOfCustomer++;
     this.rent = this.rent + this.ticketfare;
   }
 
-  getBusById(id:number) {
-    this.busService.getBusById(id).subscribe(data => {
-      console.log(data+" Data");
-      
-      this.Bus = data;
-    }
-      )
+  storeBusBooking() {
+    let busBooking: BusBooking = new BusBooking(this.noOfCustomer, this.rent, new Date(), this.date, this.Bus.dep, this.Bus.arr, this.customer, this.from_Station, this.to_Station, this.Bus);
+    console.log(busBooking);
+
   }
+
+  getBusById(id: number) {
+    this.busService.getBusById(id).subscribe(data => {
+      this.Bus = data;
+    },
+      error => {
+        console.log(error + "Error Occured");
+      }
+    )
+  }
+
+  // getStationByName(name:string):Station {
+  //   this.stationService.getStationByName(name).subscribe(
+  //     data => {
+  //       return data;
+  //     }
+  //   )
+  //   return null;
+  // }
+
+  getToStationByName(name: string) {
+    this.stationService.getStationByName(name).subscribe(
+      data => {
+        this.to_Station = data;
+      }
+    )
+    return null;
+  }
+
+  getFromStationByName(name: string) {
+    this.stationService.getStationByName(name).subscribe(
+      data => {
+        this.from_Station = data;
+      }
+    )
+  }
+
+  getCustomerById(id: number) {
+    this.customerService.getCustomerById(id).subscribe(data => {
+      {
+        this.customer = data;
+      }
+    });
+  }
+
 }

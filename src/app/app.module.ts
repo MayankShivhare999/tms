@@ -38,6 +38,14 @@ import { MypackagebookingComponent } from './mypackagebooking/mypackagebooking.c
 import { HotelbookingviewComponent } from './hotelbookingview/hotelbookingview.component'
 import { BusbookingService } from './services/busbooking.service';
 import { RouteService } from './services/route.service';
+import { DatePipe } from '@angular/common';
+import { StationService } from './services/station.service';
+import { PackagebookingviewComponent } from './packagebookingview/packagebookingview.component';
+import { PackagebookingpreviewComponent } from './packagebookingpreview/packagebookingpreview.component';
+import { BusmanageComponent } from './busmanage/busmanage.component';
+import { HotelmanageComponent } from './hotelmanage/hotelmanage.component';
+import { RoutemanageComponent } from './routemanage/routemanage.component';
+import { StationmanageComponent } from './stationmanage/stationmanage.component';
 
 
 @NgModule({
@@ -59,7 +67,13 @@ import { RouteService } from './services/route.service';
     MybusbookingComponent,
     MyhotelbookingComponent,
     MypackagebookingComponent,
-    HotelbookingviewComponent
+    HotelbookingviewComponent,
+    PackagebookingviewComponent,
+    PackagebookingpreviewComponent,
+    BusmanageComponent,
+    HotelmanageComponent,
+    RoutemanageComponent,
+    StationmanageComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +97,9 @@ import { RouteService } from './services/route.service';
     HotelService,
     PackageService,
     BusbookingService,
-    RouteService
+    RouteService,
+    StationService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
