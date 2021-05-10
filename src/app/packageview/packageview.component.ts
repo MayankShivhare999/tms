@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { data } from 'jquery';
 import { Package } from '../model/Package';
 import { PackageService } from '../services/package.service';
 

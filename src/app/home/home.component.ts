@@ -24,9 +24,9 @@ export class HomeComponent implements OnInit {
   }
 
   getNoOfCustomers() {
-    console.log("Hey");
+    // console.log("Hey");
     
-    console.log(this.customerService.getAllCustomers().subscribe.length);
+    // console.log(this.customerService.getAllCustomers().subscribe.length);
     ;
   }
 

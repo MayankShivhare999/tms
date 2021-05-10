@@ -22,6 +22,10 @@
                                     <input type="date" class="form-control" [(ngModel)]="plannedDate" name="plannedDate">
                                 </div>
                                 <div class="form-group">
+                                    <label>Duration</label>
+                                    <input type="text" class="form-control" [(ngModel)]="package.duration" name="plannedDate">
+                                </div>
+                                <div class="form-group">
                                     <label>Amount</label>
                                     <input type="text" class="form-control" id="formGroupExampleInput2" disabled [(value)]="totalamt">
                                 </div>
@@ -44,22 +48,11 @@
                 </div>
 
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                    <!-- <div class="member">
-                  <img src="../../assets/hotel.jpg" class="img-fluid" alt="">
-                  <div class="member-content">
-                    <h4>Book a Room</h4>
-                    <span>Stay in a Hotel</span>
-                    <p>
-                      Book The Ideal Hotel at a Great Price - Search, Compare & Save with us Shows Great Offers from Different
-                      Websites. </p>
-                    <div class="social">
-                      <a mat-raised-button color="primary" class="text-white" routerLink="hotel">Book</a>
-                    </div>
-                  </div>
-                </div> -->
                 </div>
             </div>
         </div>
-    </section><!-- End Services Section -->
+    </section>
+    
+    <!-- End Services Section -->
 
 </div>

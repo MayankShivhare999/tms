@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 import { Bus } from '../model/Bus';
 import { BusService } from '../services/bus.service';
+
+declare let $: any;
 
 @Component({
   selector: 'app-busmanage',
@@ -20,28 +23,26 @@ export class BusmanageComponent implements OnInit {
 
   buses: Bus[] = [];
   bus: Bus = new Bus();
-  isSaved: boolean = false;
   isupdated: boolean = false; 
-  message: string = '';
-  deleteMessage: boolean = false;
+  saveBus: FormGroup
 
-
-  constructor(private busService: BusService) { }
-
-  ngOnInit(): void {
+  constructor(private busService: BusService, private formBuilder: FormBuilder) { 
+    this.saveBus = this.formBuilder.group({ 
+      bnumber:['', Validators.required],
+      busdriver:['', Validators.required],
+      busconductor: ['', Validators.required],
+      busdept: ['', Validators.required],
+      busarr: ['', Validators.required],
+      busamt: ['', Validators.required],
+      busseat: ['', Validators.required]
+    });
     this.getBuses();
-    this.isupdated=false;
   }
 
-  saveBus = new FormGroup({
-    bnumber: new FormControl(''),
-    busdriver: new FormControl(''),
-    busconductor: new FormControl(''),
-    busdept: new FormControl(''),
-    busarr: new FormControl(''),
-    busamt: new FormControl(''),
-    busseat: new FormControl('')
-  });
+  ngOnInit(): void {
+    
+    this.isupdated=false;
+  }
 
   busupdateform = new FormGroup({
     updateid: new FormControl(),
@@ -54,6 +55,10 @@ export class BusmanageComponent implements OnInit {
     updateseat: new FormControl()
   });
 
+  addNewBus(){
+    $("#addBusModel").modal("show");
+  }
+
   addBus() {
     this.bus = new Bus();
     this.bus.busNumber = this.saveBus.get('bnumber').value;
@@ -63,21 +68,40 @@ export class BusmanageComponent implements OnInit {
     this.bus.arr = this.saveBus.get('busarr').value;
     this.bus.amount = this.saveBus.get('busamt').value;
     this.bus.currentEmptySeat = this.saveBus.get('busseat').value;
+    
     this.busService.addBus(this.bus).subscribe(
       data => {
         console.log(data);
-        this.getBuses();
-      },
-      error => console.log(error));
-    this.isSaved = true;
-    this.busnum = '';
-    this.currentEmptySeat = 0;
-    this.driver = '';
-    this.conductor = '';
-    this.dept = '';
-    this.arr = '';
-    this.amount = 0;
-    this.bus = new Bus();
+        this.busnum = '';
+        this.currentEmptySeat = 0;
+        this.driver = '';
+        this.conductor = '';
+        this.dept = '';
+        this.arr = '';
+        this.amount = 0;
+        this.bus = new Bus();    
+      });
+
+      this.busService.getAllBus().subscribe(
+        data => {
+          this.buses = data;
+          $("#addBusModel").modal("hide");
+          //sweetalert message popup
+          Swal.fire({
+            title: 'Completed',
+            text:   "Bus has been added successfully",
+            icon: 'success'
+          });  
+          //Destroy old datatable for getting new latest data
+          $('#busDataTable').DataTable().destroy();
+          //get user details sevice and show inside datatable
+          this.busService.getAllBus().subscribe(
+          busData => {
+            this.buses = busData;
+            setTimeout(()=>{$('#busDataTable').DataTable()}, 500);
+          });
+        },
+        error => console.log(error));
 }
 
   getBuses() {
@@ -118,12 +142,36 @@ export class BusmanageComponent implements OnInit {
 
   deleteBus(id:number){
     this.busService.deleteBus(id).subscribe(
+      data => console.log("success: " + data),
+      error => {
+        console.log(error);
+        Swal.fire({
+          title: 'Something went wrong',
+          text:   "Bus not deleted, associated with route",
+          icon: 'error'
+        });
+      });
+    
+    this.busService.getAllBus().subscribe(
       data => {
-        this.message = data;
-        this.deleteMessage = true;
-        this.getBuses();
-      },
-      error => console.log(error));
+        this.buses = data;
+        //sweetalert message popup
+        Swal.fire({
+          title: 'Completed',
+          text:   "Bus has been deleted successfully",
+              icon: 'success'
+            });
+          
+          //Destroy old datatable for getting new latest data
+          $('#busDataTable').DataTable().destroy();
+          //get user details sevice and show inside datatable
+          this.busService.getAllBus().subscribe(
+          busData => {
+            this.buses = busData;
+            setTimeout(()=>{$('#busDataTable').DataTable()}, 500);
+          });
+        },
+        error => console.log(error));
   }
 
   changeisUpdate(){

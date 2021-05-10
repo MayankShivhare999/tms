@@ -10,7 +10,7 @@ import { HotelService } from '../services/hotel.service';
 
 export class HotelviewComponent implements OnInit {
 
-  hotels:Hotel;
+  hotels:Hotel[];
   hotelData: any;
 
   constructor(private hotelService: HotelService) {

@@ -46,6 +46,8 @@ import { BusmanageComponent } from './busmanage/busmanage.component';
 import { HotelmanageComponent } from './hotelmanage/hotelmanage.component';
 import { RoutemanageComponent } from './routemanage/routemanage.component';
 import { StationmanageComponent } from './stationmanage/stationmanage.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { LoginService } from './services/login.service';
 
 
 @NgModule({
@@ -91,7 +93,8 @@ import { StationmanageComponent } from './stationmanage/stationmanage.component'
     HttpClientModule,
     MatButtonModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatRadioModule
   ],
   providers: [
     HotelService,
@@ -99,7 +102,8 @@ import { StationmanageComponent } from './stationmanage/stationmanage.component'
     BusbookingService,
     RouteService,
     StationService,
-    DatePipe
+    DatePipe,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-4" *ngFor="let package of packages">
             <div class="card" style="width: 18rem;">
-                <img src="https://cdn1.goibibo.com/voy_ing/t_g/83b1b64efddc11e482795ee5da2daa2a.jfif" class="card-img-top rounded mx-auto d-block set-image">
+                <img [src]="package.profile" class="card-img-top rounded mx-auto d-block set-image">
                 <div class="card-body">
                     <h3 class="card-title">{{package.name}}</h3>
                     <p class="card-text"><b>Destination : </b>{{package.destination}}</p>

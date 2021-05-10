@@ -2,7 +2,9 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { RouteData } from '../model/RouteData';
+import { Station } from '../model/Station';
 import { BusbookingService } from '../services/busbooking.service';
+import { RouteService } from '../services/route.service';
 
 @Component({
   selector: 'app-routedetail',
@@ -19,31 +21,38 @@ export class RoutedetailComponent implements OnInit {
 
   // selectedData = new BusData(this.from, this.to, this.date);
   myControl = new FormControl();
-  cities;
+  stations:Station[];
+  cities:any;
   //  :string[] = ['Agra','Bombay', 'Delhi', 'Pune', 'Mumbai'];
 
-  constructor(private busBookingService: BusbookingService, private datepipe: DatePipe) {
+
+  constructor(private busBookingService: BusbookingService, private datepipe: DatePipe, private routeService: RouteService) {
     let todayDate = new Date();
     this.today = this.datepipe.transform(todayDate, 'yyyy-MM-dd');
-    this.loadCities();
+    // this.loadCities();
+    this.getAllStations();
   }
 
   ngOnInit(): void {
   }
 
-  loadCities() {
-    var allCities = ['Agra', 'Bombay', 'Delhi', 'Pune', 'Mumbai'];
-    this.cities = allCities.map(function (city) {
-      return {
-        value: city,
-        display: city
-      }
-    })
+  loadCities(val:string) {
+   this.cities = this.stations.filter((s) =>
+    new RegExp(val, 'gi').test(s.name));
   }
 
   searchBus() {
     let selectedData = new RouteData(this.from, this.to, this.date);
     this.busBookingService.selected = selectedData;
+  }
+
+
+  getAllStations() {
+    this.routeService.getAllRoute().subscribe (
+      data => {
+        this.stations = data;
+      }
+    )
   }
 
 }

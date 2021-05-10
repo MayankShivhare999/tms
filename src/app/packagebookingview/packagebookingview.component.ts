@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Hotel } from '../model/Hotel';
 import { Package } from '../model/Package';
 import { PackageService } from '../services/package.service';
 
@@ -10,17 +9,15 @@ import { PackageService } from '../services/package.service';
 })
 export class PackagebookingviewComponent implements OnInit {
 
- package:Package=new Package();
-//  hotels:Hotel[];
-  constructor(private packageService:PackageService) { 
-   this.getPackageById(this.packageService.selectedPackageId);
-  //  this.hotels = this.package.hotels;
+  package: Package = new Package();
+  constructor(private packageService: PackageService) {
+    this.getPackageById(this.packageService.selectedPackageId);
   }
 
   ngOnInit(): void {
   }
 
-  getPackageById(id:number) {
+  getPackageById(id: number) {
     this.packageService.getPackageById(id).subscribe(
       data => {
         this.package = data;
@@ -28,9 +25,8 @@ export class PackagebookingviewComponent implements OnInit {
     )
   }
 
-  onSelectHotel(id:number) {
+  onSelectHotel(id: number) {
     this.packageService.selectedHotelId = id;
     console.log(id);
   }
-
 }

@@ -42,6 +42,7 @@ export class BusbookingviewComponent implements OnInit {
     this.getFromStationByName(this.from);
     this.getToStationByName(this.to);
     this.getCustomerById(62);
+    // this.storeBusBooking();
   }
 
 
@@ -66,7 +67,7 @@ export class BusbookingviewComponent implements OnInit {
   storeBusBooking() {
     let busBooking: BusBooking = new BusBooking(this.noOfCustomer, this.rent, new Date(), this.date, this.Bus.dep, this.Bus.arr, this.customer, this.from_Station, this.to_Station, this.Bus);
     console.log(busBooking);
-
+    
   }
 
   getBusById(id: number) {

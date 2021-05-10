@@ -18,4 +18,8 @@ export class CustomerService {
   getAllCustomers():Observable<any> {
     return this.http.get(`${this.baseURL}/getcustomers`);
   }
+
+  getCustomerByUsername(username:string):Observable<any> {
+    return this.http.get(`${this.baseURL}/getcustomerbyusername/${username}`)
+  }
 }

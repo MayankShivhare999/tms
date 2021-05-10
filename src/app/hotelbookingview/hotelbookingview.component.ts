@@ -1,6 +1,5 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { Customer } from '../model/Customer';
 import { Hotel } from '../model/Hotel';
 import { HotelBooking } from '../model/HotelBooking';
@@ -79,7 +78,6 @@ export class HotelbookingviewComponent implements OnInit {
   onDecrement() {
     if (this.noOfCustomer != 1) {
       this.noOfCustomer--;
-      const temp = this.hotel.rent;
       this.totalamt = this.totalamt - this.hotel.rent;
     }
   }
@@ -88,7 +86,6 @@ export class HotelbookingviewComponent implements OnInit {
   onIncrement() {
     if (this.noOfCustomer < 10) {
       this.noOfCustomer++;
-      const temp = this.hotel.rent;
       this.totalamt = this.totalamt + this.hotel.rent;
     }
   }
