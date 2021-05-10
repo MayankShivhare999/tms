@@ -27,7 +27,8 @@
             <tr *ngFor="let route of routes">
                 <td>{{route.from.name}}</td>
                 <td>{{route.to.name}}</td>
-                <td>{{route.buses.length}}</td>
+                <td><a href="#busInfo" data-toggle="modal" (click)='getRoute(route.id)'>{{route.buses.length}}</a></td>
+                
                 <td>
                     <button class="btn btn-info mr-3" (click)='getRoute(route.id)' data-toggle="modal" data-target="#updateStationModel">Edit</button>
                     <button class="btn btn-danger" (click)='deleteRoute(route.id)'>Delete</button>
@@ -95,3 +96,29 @@
 
 
 <!-- mat ends -->
+
+<!-- Modal for displaying hotel information  -->
+<div class="modal fade" id="busInfo">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title" style="text-align: center">Bus Information</h4>
+                </div>
+                <div class="modal-body" *ngFor="let bus of route.buses">
+                    <p>Bus Number: {{bus.busNumber}}</p>
+                    <p>Seats: {{bus.currentEmptySeat}}</p>
+                    <p>Driver: {{bus.driver}}</p>
+                    <p>Conductor: {{bus.conductor}}</p>
+                    <p>Departure Time: {{bus.dep}}</p>
+                    <p>Arrival Time: {{bus.arr}}</p>
+                    <p>Price: {{bus.amount}}</p>
+                    <hr/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,9 +1,11 @@
 <div class="container">
     <div class="text-right my-3">
-        <button type="button" class="btn btn-primary" (click)="addNewBus()">Add</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBusModel">Add</button>
     </div>
 
-    <table datatable class="row-border hover" id="busDataTable">
+
+
+    <table datatable class="row-border hover">
         <thead>
             <tr>
                 <th>Bus Number</th>
@@ -35,10 +37,11 @@
 </div>
 
 <!-- Modal for adding bus -->
-<div class="modal" id="addBusModel">
-    <div class="modal-dialog">
+<div class="modal fade" id="addBusModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form [formGroup]="saveBus" #busSave (ngSubmit)="addBus()">
+               
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add Bus</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -48,43 +51,36 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="name">Bus Number</label>
-                        <input type="text" class="form-control" formControlName="bnumber" [(ngModel)]='busnum'>
-                        <p class="alert-danger" *ngIf="saveBus.get('bnumber')?.touched && saveBus.get('bnumber')?.invalid">Bus number required</p>
+                        <input type="text" class="form-control" formControlName="bnumber" [(ngModel)]='busnum' data-toggle="tooltip" data-placement="right" title="Enter Bus Number">
                     </div>
                     <div class="form-group">
                         <label for="name">Driver</label>
-                        <input type="text" class="form-control" formControlName="busdriver" [(ngModel)]='driver'>
-                        <p class="alert-danger" *ngIf="saveBus.get('busdriver')?.touched && saveBus.get('busdriver')?.invalid">Driver required</p>
+                        <input type="text" class="form-control" formControlName="busdriver" [(ngModel)]='driver' data-toggle="tooltip" data-placement="right" title="Enter Bus Driver">
                     </div>
                     <div class="form-group">
                         <label for="name">Conductor</label>
-                        <input type="text" class="form-control" formControlName="busconductor" [(ngModel)]='conductor'>
-                        <p class="alert-danger" *ngIf="saveBus.get('busconductor')?.touched && saveBus.get('busconductor')?.invalid">Conductor required</p>
+                        <input type="text" class="form-control" formControlName="busconductor" [(ngModel)]='conductor' data-toggle="tooltip" data-placement="right" title="Enter Bus Conductor">
                     </div>
                     <div class="form-group">
                         <label for="name">Departure time</label>
-                        <input type="time" class="form-control" formControlName="busdept" [(ngModel)]='dept'>
-                        <p class="alert-danger" *ngIf="saveBus.get('busdept')?.touched && saveBus.get('busdept')?.invalid">Departure time required</p>
+                        <input type="time" class="form-control" formControlName="busdept" [(ngModel)]='dept' data-toggle="tooltip" data-placement="right" title="Enter Departure Time">
                     </div>
                     <div class="form-group">
                         <label for="name">Arrival time</label>
-                        <input type="time" class="form-control" formControlName="busarr" [(ngModel)]='arr'>
-                        <p class="alert-danger" *ngIf="saveBus.get('busarr')?.touched && saveBus.get('busarr')?.invalid">Arrival time required</p>
+                        <input type="time" class="form-control" formControlName="busarr" [(ngModel)]='arr' data-toggle="tooltip" data-placement="right" title="Enter Arrival Time">
                     </div>
                     <div class="form-group">
                         <label for="name">Amount</label>
-                        <input type="text" class="form-control" formControlName="busamt" [(ngModel)]='amount'>
-                        <p class="alert-danger" *ngIf="saveBus.get('busamt')?.touched && saveBus.get('busamt')?.invalid">Amount required</p>
+                        <input type="text" class="form-control" formControlName="busamt" [(ngModel)]='amount' data-toggle="tooltip" data-placement="right" title="Enter Amount">
                     </div>
                     <div class="form-group">
                         <label for="name">Seats</label>
-                        <input type="text" class="form-control" formControlName="busseat" [(ngModel)]='currentEmptySeat'>
-                        <p class="alert-danger" *ngIf="saveBus.get('busseat')?.touched && saveBus.get('busseat')?.invalid">Seats required</p>
+                        <input type="text" class="form-control" formControlName="busseat" [(ngModel)]='currentEmptySeat' data-toggle="tooltip" data-placement="right" title="Enter Seats">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success" [disabled]='!saveBus.valid'>Submit</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
                 </div>
             </form>
         </div>
@@ -118,19 +114,19 @@
                         </div>
                         <div class="form-group">
                             <label for="name">Departure time</label>
-                            <input type="time" class="form-control" formControlName="updatedept" [(ngModel)]=' bus.dep '>
+                            <input type="time" class="form-control" formControlName="updatedept" [(ngModel)]='bus.dep'>
                         </div>
                         <div class="form-group">
                             <label for="name">Arrival time</label>
-                            <input type="time" class="form-control" formControlName="updatearr" [(ngModel)]='bus.arr '>
+                            <input type="time" class="form-control" formControlName="updatearr" [(ngModel)]='bus.arr'>
                         </div>
                         <div class="form-group">
                             <label for="name">Amount</label>
-                            <input type="text" class="form-control" formControlName="updateamt" [(ngModel)]='bus.amount '>
+                            <input type="text" class="form-control" formControlName="updateamt" [(ngModel)]='bus.amount'>
                         </div>
                         <div class="form-group">
                             <label for="name">Seats</label>
-                            <input type="text" class="form-control" formControlName="updateseat" [(ngModel)]='bus.currentEmptySeat '>
+                            <input type="text" class="form-control" formControlName="updateseat" [(ngModel)]='bus.currentEmptySeat'>
                         </div>
                     </div>
                     <div [hidden]="!isupdated">

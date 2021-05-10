@@ -48,6 +48,8 @@ import { RoutemanageComponent } from './routemanage/routemanage.component';
 import { StationmanageComponent } from './stationmanage/stationmanage.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { LoginService } from './services/login.service';
+import { CustomermanageComponent } from './customermanage/customermanage.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 
 @NgModule({
@@ -75,7 +77,9 @@ import { LoginService } from './services/login.service';
     BusmanageComponent,
     HotelmanageComponent,
     RoutemanageComponent,
-    StationmanageComponent
+    StationmanageComponent,
+    CustomermanageComponent,
+    FeedbackComponent
   ],
   imports: [
     BrowserModule,

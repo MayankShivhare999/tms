@@ -10,7 +10,7 @@ import { HotelService } from '../services/hotel.service';
 })
 export class HotelmanageComponent implements OnInit {
 
-  constructor(private HotelService: HotelService) { }
+  constructor(private hotelService: HotelService) { }
 
   ngOnInit(): void {
     this.getHotels();
@@ -84,7 +84,7 @@ export class HotelmanageComponent implements OnInit {
     this.hotel.description = this.hotelDescription.value;
     this.hotel.rent = this.hotelRent.value;
 
-    this.HotelService.addHotel(this.hotel).subscribe(
+    this.hotelService.addHotel(this.hotel).subscribe(
       data => {
         console.log(data);
         this.getHotels();
@@ -100,7 +100,7 @@ export class HotelmanageComponent implements OnInit {
 
 
   getHotels() {
-    this.HotelService.getAllHotels().subscribe(
+    this.hotelService.getAllHotels().subscribe(
       data => this.hotels = data,
       error => {
         this.hotels = [];
@@ -110,7 +110,7 @@ export class HotelmanageComponent implements OnInit {
   }
 
   getHotel(id: number) {
-    this.HotelService.getHotelById(id).subscribe(
+    this.hotelService.getHotelById(id).subscribe(
       data => this.hotel = data,
       error => console.log(error)
     );
@@ -123,7 +123,7 @@ export class HotelmanageComponent implements OnInit {
     this.hotel.address = this.updateHotelAddress.value;
     this.hotel.description = this.updateHotelDescription.value;
     this.hotel.rent = this.updateHotelRent.value;
-    this.HotelService.updateHotel(this.hotel).subscribe(
+    this.hotelService.updateHotel(this.hotel).subscribe(
       data => {
         console.log(data);
         this.getHotels();
@@ -133,7 +133,7 @@ export class HotelmanageComponent implements OnInit {
   }
 
   deleteHotel(id: number) {
-    this.HotelService.deleteHotel(id).subscribe(
+    this.hotelService.deleteHotel(id).subscribe(
       data => {
         this.message = data;
         this.deleteMessage = true;

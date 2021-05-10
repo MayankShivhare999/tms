@@ -27,4 +27,8 @@ export class RouteService {
   getRoute(from:string, to:string):Observable<any> {
     return this.http.get(`${this.baseURL}/getroutebytostation/${from}/${to}`);
   }
+
+  getRouteById(id: number): Observable<any> {
+    return this.http.get(`${this.baseURL}/getroutebyid/${id}`);
+  }
 }

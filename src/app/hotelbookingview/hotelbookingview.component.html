@@ -18,11 +18,11 @@
                 </div>
                 <div class="form-group">
                   <label>Check In</label>
-                  <input type="date" class="form-control" name="checkIn" [(ngModel)]="checkIn" [min]="today">
+                  <input type="date" class="form-control" name="checkIn" [(ngModel)]="checkIn" [min]="today" required>
                 </div>
                 <div class="form-group">
                   <label>Check Out</label>
-                  <input type="date" class="form-control" name="checkOut" [(ngModel)]="checkOut" [min]="checkIn">
+                  <input type="date" class="form-control" name="checkOut" [(ngModel)]="checkOut" [min]="checkIn" required>
                 </div>
                 <div class="form-group">
                   <label>Amount</label>
@@ -47,19 +47,6 @@
         </div>
 
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <!-- <div class="member">
-                <img src="../../assets/hotel.jpg" class="img-fluid" alt="">
-                <div class="member-content">
-                  <h4>Book a Room</h4>
-                  <span>Stay in a Hotel</span>
-                  <p>
-                    Book The Ideal Hotel at a Great Price - Search, Compare & Save with us Shows Great Offers from Different
-                    Websites. </p>
-                  <div class="social">
-                    <a mat-raised-button color="primary" class="text-white" routerLink="hotel">Book</a>
-                  </div>
-                </div>
-              </div> -->
         </div>
 
 

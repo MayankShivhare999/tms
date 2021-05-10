@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
         this.loginService.currentCustomerName = username;
         console.log(this.loginService.currentCustomerName);
         console.log("Login Page");
-          // this.router.navigate(['/']); 
+          this.router.navigate(['/myprofile']); 
       },
       error => {
       }

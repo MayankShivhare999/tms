@@ -79,7 +79,15 @@ export class RoutemanageComponent implements OnInit {
     );
   }
 
-  // getRoute(){}
+  getRoute(id: number){
+    this.routeService.getRouteById(id).subscribe(
+      data =>{ 
+        this.route = data;
+        console.log(this.route)
+      },
+      error => console.log(error)
+    );
+  }
 
   deleteRoute(id: number){
     this.routeService.deleteRoute(id).subscribe(

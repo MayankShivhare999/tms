@@ -9,12 +9,18 @@ import { PackageService } from '../services/package.service';
 })
 export class PackagebookingviewComponent implements OnInit {
 
+  blankMessage = false;
+
   package: Package = new Package();
   constructor(private packageService: PackageService) {
     this.getPackageById(this.packageService.selectedPackageId);
+    
   }
 
   ngOnInit(): void {
+    if(this.package.hotels==null) {
+      this.blankMessage = true;
+    }
   }
 
   getPackageById(id: number) {

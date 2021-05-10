@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.loginService.currentCustomerName==='' ||  this.loginService.currentCustomerName==null) {
-      this.isLoggedIn = false;
+      this.isLoggedIn = true;
       console.log("No Login someone");
     }
     else {
@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit {
   onLogout() {
   this.loginService.currentCustomerName='';
    this.isLoggedIn = false;
+   this.router.navigate(['']);
   }
 
 

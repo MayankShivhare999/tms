@@ -11,6 +11,7 @@ import { HotelbookingviewComponent } from './hotelbookingview/hotelbookingview.c
 import { HotelmanageComponent } from './hotelmanage/hotelmanage.component';
 import { HotelviewComponent } from './hotelview/hotelview.component';
 import { LoginComponent } from './login/login.component';
+import { Feedback } from './model/Feedback';
 import { MybusbookingComponent } from './mybusbooking/mybusbooking.component';
 import { MyhotelbookingComponent } from './myhotelbooking/myhotelbooking.component';
 import { MypackagebookingComponent } from './mypackagebooking/mypackagebooking.component';
@@ -43,7 +44,9 @@ const routes: Routes = [
   { path: 'busmanage', component: BusmanageComponent },
   { path: 'hotelmanage', component: HotelmanageComponent },
   { path: 'routemanage', component: RoutemanageComponent },
-  { path: 'stationmanage', component: StationmanageComponent }
+  { path: 'stationmanage', component: StationmanageComponent },
+  { path: 'feedback', component: Feedback },
+  
 ];
 
 @NgModule({
