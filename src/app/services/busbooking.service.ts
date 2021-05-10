@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { BusBooking } from '../model/BusBooking';
 
 @Injectable({
@@ -6,11 +8,13 @@ import { BusBooking } from '../model/BusBooking';
 })
 export class BusbookingService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   selected:any;
 
   busSelected:any;
+
+  baseURL = "http://localhost:8094";
 
   // busSelected:any = 143;
   set setSelected(selected) {
@@ -22,7 +26,11 @@ export class BusbookingService {
   }
 
   addBusBooking(busBooking:BusBooking) {
-    
+    return this.http.post(`${this.baseURL}/addbusbooking`, busBooking);
+  }
+
+  getAllBusBookingByCustomerId(id:number):Observable<any> {
+    return this.http.get(`${this.baseURL}/getbusbookingsbycustomerid/${id}`);
   }
 
 }

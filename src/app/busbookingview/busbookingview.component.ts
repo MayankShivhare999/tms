@@ -67,7 +67,18 @@ export class BusbookingviewComponent implements OnInit {
   storeBusBooking() {
     let busBooking: BusBooking = new BusBooking(this.noOfCustomer, this.rent, new Date(), this.date, this.Bus.dep, this.Bus.arr, this.customer, this.from_Station, this.to_Station, this.Bus);
     console.log(busBooking);
-    
+    this.addBusBooking(busBooking);
+  }
+
+  addBusBooking(busBooking:BusBooking) {
+    this.busBookingService.addBusBooking(busBooking).subscribe(
+      data => {
+        console.log("Bus Booked...");
+      },
+      error => {
+        console.log("Something went wrong... Bus Not Booked...");
+      }
+    )
   }
 
   getBusById(id: number) {

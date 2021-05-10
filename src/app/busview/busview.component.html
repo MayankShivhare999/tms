@@ -10,20 +10,20 @@
        <table class="mat-elevation-z8 table">
         <thead>
           <tr>
-            <th scope="col">Name</th>
+            <th scope="col">Bus Number</th>
             <th scope="col" class="text-center">Dept. Time</th>
             <th scope="col" class="text-center">Duration</th>
             <th scope="col" class="text-center">Arr. Time</th>
             <th scope="col" class="text-center">Fare</th>
             <th scope="col" class="text-center">Rating</th>
-            <th scope="col" class="text-center">Available seats</th>
+            <th scope="col" class="text-center">Available seats</th>-
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody *ngFor="let data of mydata">
 
             <tr *ngFor="let i of data.buses">
-              <td scope="col">BUS_NAME</td>
+            <td scope="col">{{i.busNumber}}</td>
               <td class="text-center" scope="col">{{i.dep}}</td>
               <td class="text-center" scope="col">{{i.arr - i.dep}}</td>
               <td class="text-center" scope="col">{{i.arr}}</td>
