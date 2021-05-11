@@ -21,8 +21,6 @@ export class BusbookingviewComponent implements OnInit {
 
   Bus: Bus;
   customer: Customer;
-  // to_Station:Station;
-  // from_Station:Station;
 
   from: any;
   to: any;
@@ -91,14 +89,6 @@ export class BusbookingviewComponent implements OnInit {
     )
   }
 
-  // getStationByName(name:string):Station {
-  //   this.stationService.getStationByName(name).subscribe(
-  //     data => {
-  //       return data;
-  //     }
-  //   )
-  //   return null;
-  // }
 
   getToStationByName(name: string) {
     this.stationService.getStationByName(name).subscribe(

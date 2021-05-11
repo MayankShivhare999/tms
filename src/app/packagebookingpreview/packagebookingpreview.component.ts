@@ -70,8 +70,7 @@ export class PackagebookingpreviewComponent implements OnInit {
     let packageBooking = new PackageBooking(this.customer, new Date(), this.noOfCustomer, this.totalamt, " ", this.plannedDate, this.hotel, this.package);
    console.log(packageBooking);
    this.addPackageBooking(packageBooking);
-    //  new BusBooking(this.noOfCustomer, this.totalamt, new Date(), ,this.customer, );
-  }
+   }
 
   addPackageBooking(packageBooking:PackageBooking) {
     this.packageBookingService.addPackageBooking(packageBooking).subscribe(
