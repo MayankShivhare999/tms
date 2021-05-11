@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Duration</label>
-                                    <input type="text" class="form-control" [(ngModel)]="package.duration" name="plannedDate">
+                                    <input type="text" class="form-control" [(ngModel)]="package.duration" name="plannedDate" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label>Amount</label>
@@ -38,7 +38,7 @@
                                         (click)="onIncrement()" class="btn m-1">+</button>
                                 </div>
                                 <div class="">
-                                    <a class="btn btn-primary m-2">Make Payment</a>
+                                    <a class="btn btn-primary m-2" (click)="storePackageBooking()">Make Payment</a>
                                     <button class="btn btn-primary">Cancel</button>
                                 </div>
                             </form>

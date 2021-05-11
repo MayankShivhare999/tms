@@ -22,7 +22,7 @@
                             <div class="form-group">
                                 <label>Hotel</label>
                                 <input type="text" class="form-control" id="formGroupExampleInput" disabled
-                                    [value]="b.hotel">
+                                    [value]="b.hotel.name">
                             </div>
                             <div class="form-group">
                                 <label>Check In</label>
@@ -46,7 +46,7 @@
                             </div>
                            
                             <div class="">
-                                <button class="btn btn-primary m-2">Cancel Booking</button>
+                                <button class="btn btn-primary m-2" (click)="onDelete(b.id)">Cancel Booking</button>
                             </div>
                         </form>
                     </div>

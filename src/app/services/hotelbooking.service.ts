@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HotelBooking } from '../model/HotelBooking';
 
 @Injectable({
@@ -17,5 +18,11 @@ export class HotelbookingService {
     return this.http.post(`${this.baseURL}/addhotelbooking`, hotelBooking);
   }
 
-  
-}
+  getHotelBookingByCustomerId(id:number):Observable<any> {
+    return this.http.get(`${this.baseURL}/gethotelbookingsbycustomerid/${id}`);
+  }
+
+  deleteHotelBookingById(id:number):Observable<any> {
+    return this.http.delete(`${this.baseURL}/deletehotelbooking/${id}`);
+  }
+ }

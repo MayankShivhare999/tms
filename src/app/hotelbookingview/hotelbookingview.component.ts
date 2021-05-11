@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Customer } from '../model/Customer';
 import { Hotel } from '../model/Hotel';
 import { HotelBooking } from '../model/HotelBooking';
@@ -18,16 +19,18 @@ export class HotelbookingviewComponent implements OnInit {
   hotel: Hotel = new Hotel();
   noOfCustomer: any = 1;
   totalamt: number;
-  checkIn:Date;
-  checkOut:Date;
-  customer:Customer;
+  checkIn: Date;
+  checkOut: Date;
+  customer: Customer;
 
-  date:any;
+  date: any;
 
   // variables for validations
-  today:any;
+  today: any;
+  
 
-  constructor(private hotelservice: HotelService, private hotelBookingService:HotelbookingService, private customerService:CustomerService, private datepipe:DatePipe) {
+
+  constructor(private hotelservice: HotelService, private hotelBookingService: HotelbookingService, private customerService: CustomerService, private datepipe: DatePipe) {
     let id = this.hotelservice.selectedHotelId;
     this.getHotelById(id);
 
@@ -57,10 +60,11 @@ export class HotelbookingviewComponent implements OnInit {
 
   storeBooking() {
     console.log(this.customer.name);
-    
+
     let hotelBooking = new HotelBooking(this.noOfCustomer, this.totalamt, 'Ticket Booked', '', this.checkIn, this.checkOut, this.customer, this.hotel);
     console.log(hotelBooking);
     this.addHotelBooking(hotelBooking);
+    alert('Hotel Booked')
   }
 
   addHotelBooking(hotelBooking: HotelBooking) {
@@ -70,7 +74,7 @@ export class HotelbookingviewComponent implements OnInit {
       },
       error => {
         console.log("Not Added..");
-        
+
       })
   }
 

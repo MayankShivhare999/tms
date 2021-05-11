@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PackageBooking } from '../model/PackageBooking';
+import { PackagebookingService } from '../packagebooking.service';
 
 @Component({
   selector: 'app-mypackagebooking',
@@ -7,13 +9,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MypackagebookingComponent implements OnInit {
 
-  constructor() { }
+  packagebookings:PackageBooking[];
 
-  packagebookings = [
-    {"id":155, "bookingDate":"03/05/2021","hotel":"Naveen Mega Hotel, Goa", "noOfCustomers":3, "amount":5500}
-  ]
+  constructor(private packageBookingService:PackagebookingService) { 
+    this.getPackageBookingByCustomerId(62);
+  }
+
+
 
   ngOnInit(): void {
+  }
+
+  getPackageBookingByCustomerId(id:number) {
+    this.packageBookingService.getPackageBookingByCustomerId(id).subscribe(
+      data => {
+        this.packagebookings = data;
+      }, error => {
+        console.log("Something went wrong");
+      }
+    )
+  }
+
+  onDelete(id:number) {
+    this.packageBookingService.deletePackageBookingById(id).subscribe(
+      data => {
+        this.getPackageBookingByCustomerId(62);
+        alert("Package Booking Deleted...");
+      }, error => {
+        this.getPackageBookingByCustomerId(62);
+        alert("Package Booking Deleted...");
+      }
+      )
   }
 
 }

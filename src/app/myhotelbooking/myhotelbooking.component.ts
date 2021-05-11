@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HotelBooking } from '../model/HotelBooking';
+import { HotelbookingService } from '../services/hotelbooking.service';
 
 @Component({
   selector: 'app-myhotelbooking',
@@ -7,13 +9,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyhotelbookingComponent implements OnInit {
 
-  constructor() { }
+  hotelbookings: HotelBooking[];
 
-  hotelbookings = [
-    {"id":111, "bookingDate":"05/05/2021", "hotel":"Mansarovar Hotel, Mumbai", "checkin":"11/05/2021", "checkOut":"12/05/2021", "noOfCustomer":"1", "amount":"1200"}
-  ]
+  constructor(private hotelBookingService: HotelbookingService) {
+
+    this.getHotelBookingByCustomerId(62);
+
+  }
+
+
 
   ngOnInit(): void {
   }
 
+  getHotelBookingByCustomerId(id:number) {
+    this.hotelBookingService.getHotelBookingByCustomerId(id).subscribe(
+      data => {
+        this.hotelbookings = data;
+      },
+      errors => {
+        console.log("No Bookings");
+      }
+    )
+  }
+
+  onDelete(id: number) {
+    console.log(id);
+    
+    this.hotelBookingService.deleteHotelBookingById(id).subscribe(
+      data => {
+        alert("Booking is Canceled...");
+        this.getHotelBookingByCustomerId(62);
+      },
+      errors => {
+        alert("Booking is Canceled...");
+        this.getHotelBookingByCustomerId(62);
+      }
+    )
+  }
+
 }
+
+

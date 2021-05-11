@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { BusBooking } from '../model/BusBooking';
+import { Customer } from '../model/Customer';
 import { Hotel } from '../model/Hotel';
 import { Package } from '../model/Package';
+import { PackageBooking } from '../model/PackageBooking';
+import { PackagebookingService } from '../packagebooking.service';
+import { CustomerService } from '../services/customer.service';
 import { HotelService } from '../services/hotel.service';
 import { PackageService } from '../services/package.service';
 
@@ -17,10 +22,20 @@ export class PackagebookingpreviewComponent implements OnInit {
   totalamt: number;
   plannedDate: Date;
 
-  constructor(private packageService: PackageService, private hotelService: HotelService) {
+  customer:Customer;
+  busBooking:BusBooking;
+
+  constructor(private packageService: PackageService, private hotelService: HotelService, private customerService:CustomerService, private packageBookingService:PackagebookingService) {
     console.log(this.packageService.selectedHotelId + " " + this.packageService.selectedPackageId);
     this.getPackageById(this.packageService.selectedPackageId);
     this.getHotelById(this.packageService.selectedHotelId);
+
+    this.customerService.getCustomerById(62).subscribe(data => {
+      {
+        this.customer = data;
+      }
+    });
+
   }
 
   ngOnInit(): void {
@@ -47,6 +62,23 @@ export class PackagebookingpreviewComponent implements OnInit {
       },
       error => {
         console.log(error);
+      }
+    )
+  }
+
+  storePackageBooking() {
+    let packageBooking = new PackageBooking(this.customer, new Date(), this.noOfCustomer, this.totalamt, " ", this.plannedDate, this.hotel, this.package);
+   console.log(packageBooking);
+   this.addPackageBooking(packageBooking);
+    //  new BusBooking(this.noOfCustomer, this.totalamt, new Date(), ,this.customer, );
+  }
+
+  addPackageBooking(packageBooking:PackageBooking) {
+    this.packageBookingService.addPackageBooking(packageBooking).subscribe(
+      data => {
+        alert('Package Booked..');
+      }, error => {
+        alert("Somethinkg went wrong");
       }
     )
   }
