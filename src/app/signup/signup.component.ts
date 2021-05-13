@@ -42,15 +42,6 @@ ngOnInit(): void {
 // Function called when click on submit
 onSubmit() {
   this.signup = new Signup(this.signupForm.get('cname').value, this.signupForm.get('cmobileNo').value, this.signupForm.get('caddress').value, this.signupForm.get('cemail').value, this.signupForm.get('cusername').value, this.signupForm.get('cpassword').value);
-  // this.signup.name = this.signupForm.get('cname').value;
-  // this.signup.mobileNo = this.signupForm.get('cmobileNo').value;
-  // this.signup.address = this.signupForm.get('caddress').value;
-  // this.signup.email = this.signupForm.get('cemail').value;
-  // this.signup.username = this.signupForm.get('cusername').value;
-  // this.signup.password = this.signupForm.get('cpassword').value;
-
-  // let customer: Signup=new Signup(this.name, this.mobileNo,this.address,this.email, this.username, this.password);
-
   this.signService.addSignupDetail(this.signup).subscribe(
     
    data=>{
